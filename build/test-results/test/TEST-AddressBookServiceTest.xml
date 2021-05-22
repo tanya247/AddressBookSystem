@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AddressBookServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-22T06:11:08" hostname="LAPTOP-Q9T3UUC8" time="0.616">
+  <properties/>
+  <testcase name="givenAddressBook_WhenRetrived_ShouldReturnAddressBookSize()" classname="AddressBookServiceTest" time="0.616"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
