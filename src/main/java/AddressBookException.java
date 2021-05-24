@@ -1,6 +1,6 @@
 public class AddressBookException extends Exception{
     public enum AddressBookExceptionType {
-        READ_DATA_EXCEPTION;
+        READ_DATA_EXCEPTION, UPDATION_DATA_EXCEPTION
     }
 
     public AddressBookExceptionType type;

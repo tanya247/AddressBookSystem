@@ -1,12 +1,14 @@
+import java.util.Objects;
+
 public class AddressBook {
-    private String firstName ;
+    public String firstName ;
     private String lastName;
     private String address;
     private String city;
     private String state;
     private String phoneNo;
     private String email;
-    public String getFirstName() {
+    public  String getFirstName() {
         return firstName;
     }
     public AddressBook(String firstName ,String lastName ,String address, String city,
@@ -77,4 +79,13 @@ public class AddressBook {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressBook that = (AddressBook) o;
+        return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(phoneNo, that.phoneNo) && Objects.equals(email, that.email);
+    }
+
 }

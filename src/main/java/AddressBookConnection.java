@@ -4,8 +4,10 @@ import java.util.List;
 
 
 public class AddressBookConnection {
-    List<AddressBook> addressBookList;
+    List<AddressBook> addressBookList = new ArrayList<>();
     private static AddressBookConnection addressBookConnection;
+    private PreparedStatement recordDataStatement;
+
     public Connection getConnection() throws SQLException {
         String jdbcURL = "jdbc:mysql://localhost:3306/ addressbook_service?useSS1=false";
         String userName = "root";
@@ -59,5 +61,42 @@ public class AddressBookConnection {
                     "!!Unable to read data from database!!");
         }
         return addressBookList;
+    }
+    public List<AddressBook> getRecordDataByName(String firstName) throws AddressBookException {
+        List<AddressBook> record = null;
+        if (this.recordDataStatement == null) this.preparedStatementForRecord();
+        try {
+            recordDataStatement.setString(1, firstName);
+            ResultSet resultSet = recordDataStatement.executeQuery();
+            record = this.getAddressBookData(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new AddressBookException(AddressBookException.AddressBookExceptionType.UPDATION_DATA_EXCEPTION,
+                    "!!Unable to update data from database!!");
+        }
+        return record;
+    }
+
+    private void preparedStatementForRecord() {
+        try {
+            Connection connection = this.getConnection();
+            String query = "SELECT * FROM addressbook WHERE First_Name = ?";
+            recordDataStatement = connection.prepareStatement(query);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public int updateDataUsingPreparedStatement(String firstName, String address) {
+        String query = "UPDATE addressbook SET Address = ? WHERE First_Name = ?";
+        try (Connection connection = this.getConnection()) {
+            PreparedStatement preparedStatementUpdate = connection.prepareStatement(query);
+            preparedStatementUpdate.setString(1, address);
+            preparedStatementUpdate.setString(2, firstName);
+            return preparedStatementUpdate.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return 0;
     }
 }

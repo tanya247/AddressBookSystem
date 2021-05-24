@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AddressBookServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-22T06:11:08" hostname="LAPTOP-Q9T3UUC8" time="0.616">
+<testsuite name="AddressBookServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-24T11:46:10" hostname="LAPTOP-Q9T3UUC8" time="3.336">
   <properties/>
-  <testcase name="givenAddressBook_WhenRetrived_ShouldReturnAddressBookSize()" classname="AddressBookServiceTest" time="0.616"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="givenNewSalaryOfEmployee_WhenUpdated_ShouldSyncWithDatabase()" classname="AddressBookServiceTest" time="3.336"/>
+  <system-out><![CDATA[[AddressBook{firstName='Ankur', lastName='Singh', address='karolbagh', city='Delhi', state='Delhi', phoneNo=8745219653, email='anksingh@gmail.com'}, AddressBook{firstName='Poonam', lastName='Patel', address='abcvsfgdsdsh', city='Varansi', state='UP', phoneNo=7485967895, email='poonamPatel@gmail.com'}, AddressBook{firstName='Prashant', lastName='Kumar', address='chibramau', city='kannuj', state='UP', phoneNo=8547961235, email='prashantkumar@gmail.com'}, AddressBook{firstName='Sandip', lastName='Chauhan', address='ghaziabad', city='Ghaziabad', state='UP', phoneNo=8745967842, email='s876895@gmail.com'}, AddressBook{firstName='Shruti', lastName='Verma', address='kanpur', city='Kanpur', state='UP', phoneNo=8547963275, email='shrutiverma2105@gmail.com'}, AddressBook{firstName='Tanvi', lastName='Sharma', address='ABES Ghaziabad', city='Ghaziabad', state='UP', phoneNo=7469823514, email='tanvisharma854@gmail.com'}]
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

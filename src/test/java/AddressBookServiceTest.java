@@ -10,6 +10,18 @@ public class AddressBookServiceTest {
     @Test
     public void givenAddressBook_WhenRetrived_ShouldReturnAddressBookSize() throws AddressBookException {
         addressBookList = addressBookService.readAddressBookData();
+        System.out.println(addressBookList);
         Assertions.assertEquals(6, addressBookList.size());
     }
+    @Test
+    public void givenNewAddress_WhenUpdated_ShouldSyncWithDatabase() throws AddressBookException {
+        AddressBookService addressBookService = new AddressBookService();
+        List<AddressBook>addressBooks = addressBookService.readAddressBookData();
+        addressBookService.updateEmployeeSalary("Sandip","Kanpur");
+        System.out.println(addressBooks);
+        boolean result = addressBookService.checkEmployeePayrollInSyncWithDB("Sandip");
+        Assertions.assertTrue(result);
+    }
 }
+
+
