@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,8 @@ public class AddressBookConnection {
                 String state = resultSet.getString("State");
                 String phoneNo = resultSet.getString("Mobile_No");
                 String email = resultSet.getString("Email");
-                addressBookList.add(new AddressBook(firstName, lastName, address, city, state, phoneNo, email));
+                LocalDate date = resultSet.getDate("startDate").toLocalDate();
+                addressBookList.add(new AddressBook(firstName, lastName, address, city, state, phoneNo, email, date));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,5 +100,11 @@ public class AddressBookConnection {
             exception.printStackTrace();
         }
         return 0;
+    }
+
+    public List<AddressBook> getRecordsAddedInGivenDateRange(String date1, String date2) throws AddressBookException {
+        String query = String.format("SELECT * FROM addressbook WHERE startDate BETWEEN '%s' AND '%s';", date1, date2);
+        return this.getDataFromDataBase(query);
+
     }
 }
