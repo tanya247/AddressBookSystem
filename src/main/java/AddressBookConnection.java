@@ -2,6 +2,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class AddressBookConnection {
@@ -54,8 +55,8 @@ public class AddressBookConnection {
                 String state = resultSet.getString("State");
                 String phoneNo = resultSet.getString("Mobile_No");
                 String email = resultSet.getString("Email");
-                LocalDate date = resultSet.getDate("startDate").toLocalDate();
-                addressBookList.add(new AddressBook(firstName, lastName, address, city, state, phoneNo, email, date));
+                //LocalDate date = resultSet.getDate("startDate").toLocalDate();
+                addressBookList.add(new AddressBook(firstName, lastName, address, city, state, phoneNo, email));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,4 +108,36 @@ public class AddressBookConnection {
         return this.getDataFromDataBase(query);
 
     }
+    public List<AddressBook> getRecordsByCityOrState(String city, String state) throws AddressBookException {
+        List<AddressBook> addressBooks = this.readData();
+        String query = String.format("SELECT * FROM addressbook WHERE City='%s' OR State='%s';", city, state);
+        return this.getDataFromDataBase(query);
+    }
+
+    public AddressBook addNewContact(String firstName, String lastName, String address, String city, String state,
+                                     String phoneNo, String email) throws AddressBookException {
+        int id = -1;
+        AddressBook addressBookData = null;
+        String query = String.format(
+                "insert into addressBook(First_Name, Last_Name, Address, City, State, Mobile_No, Email) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                firstName, lastName, address, city, state,  phoneNo, email);
+        try (Connection connection = this.getConnection()) {
+            Statement statement = connection.createStatement();
+            int rowChanged = statement.executeUpdate(query, statement.RETURN_GENERATED_KEYS);
+            if (rowChanged == 1) {
+                ResultSet resultSet = statement.getGeneratedKeys();
+                if (resultSet.next())
+                    id = resultSet.getInt(1);
+            }
+            addressBookData = new AddressBook(firstName, lastName, address, city, state, phoneNo, email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new AddressBookException(AddressBookException.AddressBookExceptionType.INSERTION_FAIL,"Unable to add employee!!");
+        }
+        return addressBookData;
+    }
+
 }
+
+
+

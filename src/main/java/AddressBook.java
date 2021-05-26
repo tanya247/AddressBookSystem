@@ -10,6 +10,18 @@ public class AddressBook {
     private String phoneNo;
     private String email;
     public LocalDate startDate;
+
+    public AddressBook(String firstName, String lastName, String address, String city, String state, String phoneNo, String email) {
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.address=address;
+        this.city=city;
+        this.state=state;
+        this.phoneNo=phoneNo;
+        this.email=email;
+    }
+
+
     public  String getFirstName() {
         return firstName;
     }
@@ -72,15 +84,13 @@ public class AddressBook {
 
     @Override
     public String toString() {
-        return "AddressBook{" +
-                "firstName='" + firstName + '\'' +
+        return "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", phoneNo=" + phoneNo +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + '\'' ;
     }
 
     @Override

@@ -1,4 +1,7 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class AddressBookService {
@@ -15,7 +18,7 @@ public class AddressBookService {
 
         return this.addressBookList = addressBookConnection.readData();
     }
-    public void updateEmployeeSalary(String firstName, String address) throws AddressBookException{
+    public void updateAddress(String firstName, String address) throws AddressBookException{
         int result = new AddressBookConnection().updateDataUsingPreparedStatement(firstName,address);
         if (result == 0)
             return;
@@ -32,7 +35,7 @@ public class AddressBookService {
                 .orElse(null);
     }
 
-    public boolean checkEmployeePayrollInSyncWithDB(String firstName) throws AddressBookException {
+    public boolean checkAddressBookInSyncWithDB(String firstName) throws AddressBookException {
         List<AddressBook> addressBooks = addressBookConnection.getRecordDataByName(firstName);
 
         return addressBooks.get(0).equals(getAddressBookData(firstName));
@@ -41,5 +44,16 @@ public class AddressBookService {
         List<AddressBook> addressBooks = addressBookConnection.getRecordsAddedInGivenDateRange(date1, date2);
         return addressBooks;
     }
+    public List<AddressBook> getRecordsAddedByCityOrStateName(String city, String state) throws AddressBookException {
+        List<AddressBook> addressBooks = addressBookConnection.getRecordsByCityOrState(city,state);
+        return addressBooks;
+    }
+    public void addNewContact(String firstName, String lastName,  String address, String city, String state,
+                              String phoneNo, String email) throws AddressBookException {
+        addressBookList = this.readAddressBookData();
+        addressBookList.add(addressBookConnection.addNewContact(firstName, lastName,  address, city, state,  phoneNo,
+                email));
+    }
+
 
 }

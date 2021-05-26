@@ -17,9 +17,9 @@ public class AddressBookServiceTest {
     public void givenNewAddress_WhenUpdated_ShouldSyncWithDatabase() throws AddressBookException {
         AddressBookService addressBookService = new AddressBookService();
         List<AddressBook>addressBooks = addressBookService.readAddressBookData();
-        addressBookService.updateEmployeeSalary("Sandip","Kanpur");
+        addressBookService.updateAddress("Sandip","Kanpur");
         System.out.println(addressBooks);
-        boolean result = addressBookService.checkEmployeePayrollInSyncWithDB("Sandip");
+        boolean result = addressBookService.checkAddressBookInSyncWithDB("Sandip");
         Assertions.assertTrue(result);
     }
     @Test
@@ -27,6 +27,20 @@ public class AddressBookServiceTest {
         AddressBookService addressBookService = new AddressBookService();
         List<AddressBook> recordDataInGivenDateRange = addressBookService.getRecordAddedInDateRange("2020-01-01","2015-05-20");
         Assertions.assertEquals(3,recordDataInGivenDateRange.size());
+    }
+    @Test
+    public void givenNameofCityOrState_WhenRetrieved_ShouldReturnProperData() throws AddressBookException {
+        AddressBookService addressBookService = new AddressBookService();
+        List<AddressBook> addressBooks = addressBookService.getRecordsAddedByCityOrStateName("Ghaziabad","UP");
+        System.out.println(addressBooks);
+        Assertions.assertEquals(5,addressBooks.size());
+    }
+    @Test
+    public void givenNewContact_WhenAdded_ShouldSyncWithDB() throws AddressBookException {
+        AddressBookService addressBookService = new AddressBookService();
+        addressBookService.addNewContact("Tanya","Kansal","chandi mandir","Hapur","UP","7458964411","abc@gmail.com");
+        Assertions.assertTrue(addressBookService.checkAddressBookInSyncWithDB("Tanya"));
+
     }
 }
 
