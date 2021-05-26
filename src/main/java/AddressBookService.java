@@ -54,6 +54,9 @@ public class AddressBookService {
         addressBookList.add(addressBookConnection.addNewContact(firstName, lastName,  address, city, state,  phoneNo,
                 email));
     }
+    public void addMultipleContactsToRecord(List<AddressBook> addressBooks) throws AddressBookException {
+        addressBookConnection.addMultipleContactsToDBUsingThread(addressBooks);
+    }
 
 
 }

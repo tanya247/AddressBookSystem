@@ -1,9 +1,9 @@
 AddressBookException.java
  AddressBookException
  AddressBookException$AddressBookExceptionType
+AddressBookConnection.java
+ AddressBookConnection
 AddressBook.java
  AddressBook
 AddressBookService.java
  AddressBookService
-AddressBookConnection.java
- AddressBookConnection

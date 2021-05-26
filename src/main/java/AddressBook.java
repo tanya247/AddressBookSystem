@@ -3,15 +3,16 @@ import java.util.Objects;
 
 public class AddressBook {
     public String firstName ;
-    private String lastName;
-    private String address;
-    private String city;
-    private String state;
-    private String phoneNo;
-    private String email;
+    public String lastName;
+    public String address;
+    public String city;
+    public String state;
+    public String phoneNo;
+    public String email;
     public LocalDate startDate;
 
     public AddressBook(String firstName, String lastName, String address, String city, String state, String phoneNo, String email) {
+        super();
         this.firstName=firstName;
         this.lastName=lastName;
         this.address=address;

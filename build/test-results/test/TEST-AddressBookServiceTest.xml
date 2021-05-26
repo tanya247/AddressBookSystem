@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AddressBookServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-26T06:31:36" hostname="LAPTOP-Q9T3UUC8" time="1.185">
+<testsuite name="AddressBookServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-26T07:36:43" hostname="LAPTOP-Q9T3UUC8" time="0.65">
   <properties/>
-  <testcase name="givenNewContact_WhenAdded_ShouldSyncWithDB()" classname="AddressBookServiceTest" time="1.185"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <testcase name="givenMultipleContact_WhenAdded_ShouldSyncWithDB()" classname="AddressBookServiceTest" time="0.65"/>
+  <system-out><![CDATA[Contact Being Added:Paras
+Contact Being Added:Palak
+Contact Added:Paras
+Contact Added:Palak
+]]></system-out>
+  <system-err><![CDATA[java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Parass@gmail.com' for key 'addressbook.PRIMARY'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1333)
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2111)
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1338)
+	at AddressBookConnection.addNewContact(AddressBookConnection.java:127)
+	at AddressBookConnection.lambda$addMultipleContactsToDBUsingThread$0(AddressBookConnection.java:147)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+AddressBookException
+	at AddressBookConnection.addNewContact(AddressBookConnection.java:136)
+	at AddressBookConnection.lambda$addMultipleContactsToDBUsingThread$0(AddressBookConnection.java:147)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+]]></system-err>
 </testsuite>

@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class AddressBookServiceTest {
@@ -40,6 +41,21 @@ public class AddressBookServiceTest {
         AddressBookService addressBookService = new AddressBookService();
         addressBookService.addNewContact("Tanya","Kansal","chandi mandir","Hapur","UP","7458964411","abc@gmail.com");
         Assertions.assertTrue(addressBookService.checkAddressBookInSyncWithDB("Tanya"));
+
+    }
+    @Test
+    public void givenMultipleContact_WhenAdded_ShouldSyncWithDB() throws AddressBookException {
+        AddressBook[] addressBooks= {
+                new AddressBook("Palak", "Singhal", "abc", "Hapur",
+                        "UP", "789456244", "Pss@gmail.com"),
+                new AddressBook("Paras", "Singhal", "abcd", "Hapur",
+                        "UP", "785625444", "Parass@gmail.com")
+
+        };
+        List<AddressBook> addressBookList = Arrays.asList(addressBooks);
+        addressBookService.addMultipleContactsToRecord(addressBookList);
+        Assertions.assertTrue(addressBookService.checkAddressBookInSyncWithDB("Palak"));
+        Assertions.assertTrue(addressBookService.checkAddressBookInSyncWithDB("Paras"));
 
     }
 }
